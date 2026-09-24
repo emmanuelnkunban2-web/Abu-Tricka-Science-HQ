@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="The Abu Tricka Science Hub — Year 2 learning platform for SHS students.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>The Abu Tricka Science Hub</title>
+<style>
+:root{--bg:#050b14;--bg2:#07111f;--card:#0c192a;--card2:#10243a;--text:#f5f9ff;--muted:#9bb0c6;--cyan:#42dcff;--blue:#3285ff;--purple:#8068ff;--line:#1c3852;--good:#52df8b;--bad:#ff6878;--warn:#ffc85c;--shadow:0 24px 70px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(900px 500px at 90% -10%,#182d62 0,#07111f 48%,#050b14 100%);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(5,11,20,.84);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:950;letter-spacing:-.8px}.brand .a{color:var(--cyan)}.brand .b{color:#fff}.brand small{color:var(--muted);font-weight:700}
+.navlinks{display:flex;gap:22px;color:var(--muted);font-weight:800}.navlinks a:hover{color:#fff}.menu{display:none;border:1px solid var(--line);background:var(--card);color:#fff;border-radius:11px;padding:8px 11px}
+.hero{padding:70px 0 45px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.pill{display:inline-flex;border:1px solid #245b74;background:#0a2230;color:var(--cyan);border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:900}
+h1{font-size:clamp(2.7rem,7vw,5.6rem);line-height:.98;letter-spacing:-3px;margin:20px 0}.gradient{background:linear-gradient(90deg,var(--cyan),#8e7cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:700px;color:var(--muted);font-size:1.05rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{border:1px solid var(--line);border-radius:13px;padding:12px 17px;background:var(--card);color:#fff;font-weight:900;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:#3c6687}.primary{border:0;background:linear-gradient(90deg,#14a9d3,#6f5df6)}.danger{border-color:#63333c;background:#28131a}
+.hero-box{background:linear-gradient(145deg,#112642,#091524);border:1px solid var(--line);border-radius:25px;padding:27px;box-shadow:var(--shadow)}.hero-number{font-size:4.6rem;font-weight:950;line-height:1;color:var(--cyan)}.hero-box hr{border:0;border-top:1px solid var(--line);margin:20px 0}
+section{padding:48px 0}.head{margin-bottom:20px}.head h2{font-size:2rem;line-height:1.1;margin:0 0 7px}.muted{color:var(--muted)}
+.searchbar{display:flex;gap:10px}.searchbar input{flex:1;min-width:0;border:1px solid var(--line);border-radius:14px;background:#081423;color:#fff;padding:15px;outline:none}.searchbar input:focus{border-color:var(--cyan)}.searchbar button{border:0;border-radius:14px;background:var(--cyan);color:#03131b;padding:0 20px;font-weight:950}
+.results{display:grid;gap:8px;margin-top:12px}.result{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px}.result:hover{border-color:#3d688b}.result small{color:var(--cyan)}
+.subject-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.subject{background:linear-gradient(145deg,#0d1d31,#081320);border:1px solid var(--line);border-radius:18px;padding:20px;min-height:170px;transition:.2s}.subject:hover{transform:translateY(-4px);border-color:#3e688a}.subject .ico{font-size:2rem}.subject h3{margin:9px 0 4px}.subject p{margin:0;color:var(--muted);font-size:.9rem}.mini-progress{height:6px;background:#0a1320;border-radius:99px;margin-top:15px;overflow:hidden}.mini-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.dashboard{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{background:rgba(12,25,42,.86);border:1px solid var(--line);border-radius:20px;padding:21px}.progress-row{display:grid;grid-template-columns:125px 1fr 50px;gap:10px;align-items:center;margin:11px 0}.bar{height:9px;background:#07111d;border-radius:99px;overflow:hidden}.bar i{height:100%;display:block;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.badges{display:flex;gap:9px;flex-wrap:wrap}.badge{border:1px solid var(--line);background:#091727;border-radius:13px;padding:10px 12px;font-size:.88rem}.badge.locked{opacity:.45}
+.library{margin-top:18px;background:rgba(9,20,34,.9);border:1px solid var(--line);border-radius:23px;padding:18px}.crumb{display:flex;gap:7px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.9rem;margin-bottom:15px}.crumb button{border:0;background:transparent;color:var(--cyan);padding:0;font-weight:800}
+.library-grid{display:grid;grid-template-columns:280px 1fr;gap:16px}.section-list{display:grid;gap:8px;align-content:start}.section-btn{border:1px solid var(--line);background:#081626;color:#fff;border-radius:13px;padding:12px;text-align:left}.section-btn.active{border-color:var(--cyan);background:#0b2331}.topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.topic-card{border:1px solid var(--line);background:#0a1828;border-radius:15px;padding:16px;text-align:left}.topic-card:hover{border-color:#3c6687}.topic-card.done{box-shadow:inset 3px 0 var(--good)}.topic-card strong{display:block}.topic-card small{color:var(--muted)}
+.lesson{margin-top:16px;background:#081624;border:1px solid var(--line);border-radius:20px;padding:24px}.lesson-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.eyebrow{color:var(--cyan);font-size:.78rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}.lesson h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:5px 0 10px;line-height:1.1}.lesson h3{margin-top:25px}.lesson p,.lesson li{color:#c7d5e3}.lesson ul{padding-left:20px}.lesson .callout{background:#091b2c;border:1px solid #21445e;border-left:4px solid var(--cyan);border-radius:13px;padding:15px;margin:14px 0}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#050d17;border:1px solid var(--line);padding:14px;border-radius:12px;white-space:pre-wrap}.step{border-left:3px solid var(--purple);padding:8px 14px;margin:8px 0;background:#0a1625}
+.visual{margin:18px 0;border:1px solid var(--line);background:#06101b;border-radius:16px;padding:12px;overflow:auto}.visual svg{max-width:100%;height:auto;display:block;margin:auto}
+.quiz{margin-top:17px;border:1px solid var(--line);background:linear-gradient(145deg,#0e2035,#0a1726);border-radius:18px;padding:19px}.qcard{border-top:1px solid var(--line);padding:17px 0}.qcard:first-child{border-top:0}.options{display:grid;gap:8px;margin-top:10px}.option{border:1px solid var(--line);background:#081626;color:#fff;border-radius:11px;padding:11px;text-align:left}.option:disabled{cursor:default;opacity:1}.option.correct{border-color:var(--good);background:#0b281c}.option.wrong{border-color:var(--bad);background:#2a1118}.feedback{margin-top:9px;border-radius:10px;padding:9px 11px;display:none}.feedback.show{display:block}.feedback.good{border:1px solid #286c48;background:#092318}.feedback.bad{border:1px solid #6e2e39;background:#250f15}
+.test-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.score-box{background:#081626;border:1px solid var(--line);border-radius:13px;padding:14px;margin-top:12px}.test-grid{display:grid;gap:12px}.theory{border:1px solid var(--line);border-radius:13px;padding:15px;background:#091827}
+.creator{display:grid;grid-template-columns:.7fr 1.3fr;gap:16px;align-items:stretch}.creator-photo{width:100%;height:100%;min-height:330px;object-fit:cover;object-position:center 20%;border-radius:20px;border:1px solid var(--line)}.school-brand{width:100%;max-height:420px;object-fit:contain;border-radius:18px;background:#fff}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.notice{border:1px solid #3b3c70;background:#121536;border-radius:16px;padding:16px}.coming{color:#c4b8ff;font-weight:950}
+footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted)}
+.hidden{display:none!important}.backtop{position:fixed;right:16px;bottom:16px;z-index:90}
+@media(max-width:980px){.subject-grid{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}.creator,.about-grid{grid-template-columns:1fr}.dashboard{grid-template-columns:1fr}}
+@media(max-width:760px){nav{height:64px}.menu{display:block}.navlinks{display:none}.navlinks.open{display:flex;position:absolute;left:4%;right:4%;top:61px;flex-direction:column;background:#081523;border:1px solid var(--line);border-radius:15px;padding:15px}.subject-grid{grid-template-columns:repeat(2,1fr)}.library-grid{grid-template-columns:1fr}.section-list{grid-template-columns:1fr 1fr}.topic-grid{grid-template-columns:1fr}.progress-row{grid-template-columns:105px 1fr 40px}.lesson{padding:18px}.searchbar{flex-direction:column}.searchbar button{padding:13px}.hero{padding-top:45px}}
+@media(max-width:470px){.wrap{width:min(94%,1180px)}.subject-grid{grid-template-columns:1fr}.section-list{grid-template-columns:1fr}.hero-number{font-size:3.5rem}h1{letter-spacing:-2px}.actions .btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap"><nav>
+  <a class="brand" href="#home"><span class="a">ABU TRICKA</span> <span class="b">SCIENCE HUB</span> <small>• YEAR 2–3</small></a>
+  <button class="menu" id="menuBtn" aria-label="Open navigation">☰</button>
+  <div class="navlinks" id="nav"><a href="#subjects">Subjects</a><a href="#search">Search</a><a href="#progress">My Progress</a><a href="#creator">Creator</a></div>
+ </nav></div>
+</header>
+
+<main id="home">
+<section class="hero wrap">
+ <div>
+  <span class="pill">YEJI SENIOR HIGH TECHNICAL SCHOOL • SHS 2 / 2F1</span>
+  <h1>Learn.<br><span class="gradient">Practice. Master.</span></h1>
+  <p>A student-friendly learning and revision platform for SHS Year 2 students. Study real lessons, work through examples, test yourself and track your progress without needing an account.</p>
+  <div class="actions"><a class="btn primary" href="#subjects">📚 START LEARNING</a><a class="btn" href="#search">🔎 I DON'T UNDERSTAND</a><a class="btn" href="#progress">📊 MY PROGRESS</a></div>
+ </div>
+ <div class="hero-box">
+  <div class="hero-number">YEAR 2</div>
+  <h2>Current Release</h2>
+  <p class="muted">Biology • Chemistry • Physics • Economics • Social Studies</p>
+  <hr>
+  <p><b>YEAR 3</b> <span class="coming">COMING SOON</span></p>
+  <p class="muted">No unfinished Year 3 lessons are activated. The content architecture is ready for a future release.</p>
+ </div>
+</section>
+
+<section id="subjects"><div class="wrap">
+ <div class="head"><h2>📚 Year 2 Subjects</h2><p class="muted">Subject → Section → Topic → Lesson → Quick Check → Progress</p></div>
+ <div class="subject-grid" id="subjectGrid"></div>
+</div></section>
+
+<section id="search"><div class="wrap">
+ <div class="head"><h2>🔎 What don't you understand?</h2><p class="muted">Search the built-in Year 2 lesson database. No paid AI API is required.</p></div>
+ <div class="searchbar"><input id="searchInput" placeholder="Try: equilibrium, Young's modulus, change in supply, GDP..." autocomplete="off"><button id="searchBtn">Search</button></div>
+ <div id="searchResults" class="results"></div>
+</div></section>
+
+<section id="progress"><div class="wrap">
+ <div class="head"><h2>📊 My Progress</h2><p class="muted">Your progress stays on this device using localStorage.</p></div>
+ <div class="dashboard">
+  <div class="panel"><h3>Subject progress</h3><div id="progressList"></div></div>
+  <div class="panel"><h3>Achievements</h3><div class="badges" id="badges"></div><div class="notice" style="margin-top:15px"><b id="streakText">🔥 Study streak: 0 days</b><br><span class="muted">Open and complete lessons regularly to build your streak.</span></div></div>
+ </div>
+</div></section>
+
+<section id="library"><div class="wrap">
+ <div class="head"><h2>🎓 Learning Library</h2><p class="muted">Choose a subject, then a section and topic. Use the Back buttons or breadcrumbs whenever you need to move up.</p></div>
+ <div class="library">
+  <div class="crumb" id="crumb">Choose a subject to begin.</div>
+  <div class="library-grid">
+   <aside class="section-list" id="sectionList"></aside>
+   <div>
+    <div class="topic-grid" id="topicGrid"></div>
+    <article class="lesson hidden" id="lesson"></article>
+    <div id="quizMount"></div>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section id="mock"><div class="wrap">
+ <div class="head"><h2>📝 Subject Mock Exams</h2><p class="muted">Each subject includes a 40-objective + 6-theory examination structure for later revision. Theory responses are for self-marking or teacher review.</p></div>
+ <div class="panel">
+  <select id="mockSubject" style="width:100%;background:#081626;color:#fff;border:1px solid var(--line);border-radius:12px;padding:12px"></select>
+  <div id="mockMount" style="margin-top:15px"></div>
+ </div>
+</div></section>
+
+<section id="creator"><div class="wrap">
+ <div class="head"><h2>👤 About the Creator</h2><p class="muted">A student-built learning project — not an official government or school website.</p></div>
+ <div class="creator">
+  <img class="creator-photo" src="assets/creator-photo.png" alt="Creator portrait">
+  <div class="panel">
+   <div class="eyebrow">CREATOR</div><h2>NKUNBAN EMMANUEL</h2><h3>Killer Bean • Abu Tricka</h3>
+   <p class="muted">Student • Science Learner • Technology Enthusiast</p>
+   <p>Creator of <b>The Abu Tricka Science Hub</b>, built to make Year 2 learning more understandable, interactive and practical for students.</p>
+   <p><b>School:</b> Yeji Senior High Technical School (Yeji SHST), Ghana<br><b>Class:</b> SHS 2 / 2F1 Science</p>
+   <p><b>WhatsApp:</b> +233 594 284 223</p>
+   <a class="btn primary" href="https://wa.me/233594284223" target="_blank" rel="noopener">CONTACT ON WHATSAPP</a>
+  </div>
+ </div>
+ <div class="about-grid" style="margin-top:16px">
+  <div class="panel"><h3>🏫 School connection</h3><p class="muted">Yeji Senior High Technical School</p><img class="school-brand" src="assets/creator-school-brand.png" alt="Yeji Senior High Technical School badge and creator image"></div>
+  <div class="panel"><h3>ℹ️ Platform status</h3><p>Year 2 is the only active learning release.</p><p><b>Year 3:</b> <span class="coming">COMING SOON / FUTURE RELEASE</span></p><p class="muted">This platform is independently created and does not claim official ownership, endorsement or publication by NaCCA, Ghana Education Service or Yeji SHST.</p></div>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <b>© 2026 The Abu Tricka Science Hub</b><br>Yeji SHST • Year 2 Current Release<br>
+ Created by: <b>NKUNBAN EMMANUEL</b> • Killer Bean • Abu Tricka<br>
+ WhatsApp: +233 594 284 223 • Year 3: Coming Soon
+</div></footer>
+<a class="btn backtop" href="#home">↑</a>
+
+<script src="data.js"></script>
+<script>
+const DATA=window.ABU_DATA, MOCKS=window.ABU_MOCKS;
+const icons={Biology:"🧬",Chemistry:"⚗️",Physics:"⚡",Economics:"📈","Social Studies":"🌍"};
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+let state={subject:null,section:0,topic:0};
+let done=new Set(JSON.parse(localStorage.getItem("abu_done_v3")||"[]"));
+let quizScores=JSON.parse(localStorage.getItem("abu_quiz_scores_v3")||"{}");
+let streak=JSON.parse(localStorage.getItem("abu_streak_v3")||'{"last":"","days":0}');
+
+function save(){localStorage.setItem("abu_done_v3",JSON.stringify([...done]));localStorage.setItem("abu_quiz_scores_v3",JSON.stringify(quizScores));localStorage.setItem("abu_streak_v3",JSON.stringify(streak));renderProgress();renderSubjects();}
+function totalTopics(s){return DATA[s].reduce((n,x)=>n+x.topics.length,0)}
+function completedSubject(s){return DATA[s].reduce((n,sec)=>n+sec.topics.filter(t=>done.has(t.id)).length,0)}
+function markStreak(){
+ const today=new Date().toISOString().slice(0,10);
+ if(streak.last===today)return;
+ const d=streak.last?Math.floor((new Date(today)-new Date(streak.last))/86400000):999;
+ streak.days=(d===1?streak.days+1:1);streak.last=today;
+ save();
+}
+function renderSubjects(){
+ document.getElementById("subjectGrid").innerHTML=Object.keys(DATA).map(s=>{
+   const n=completedSubject(s), total=totalTopics(s), pct=Math.round(n/total*100);
+   return `<button class="subject" onclick="openSubject('${esc(s)}')"><div class="ico">${icons[s]}</div><h3>${esc(s)}</h3><p>${totalTopics(s)} topics • ${DATA[s].length} sections</p><div class="mini-progress"><i style="width:${pct}%"></i></div><small class="muted">${n}/${total} complete</small></button>`
+ }).join("");
+}
+function renderProgress(){
+ const overall=Object.keys(DATA).reduce((a,s)=>a+completedSubject(s),0), total=Object.keys(DATA).reduce((a,s)=>a+totalTopics(s),0);
+ document.getElementById("progressList").innerHTML=Object.keys(DATA).map(s=>{
+   const n=completedSubject(s),t=totalTopics(s),p=Math.round(n/t*100);
+   return `<div class="progress-row"><b>${icons[s]} ${esc(s)}</b><div class="bar"><i style="width:${p}%"></i></div><span>${p}%</span></div>`
+ }).join("")+`<hr style="border-color:var(--line)"><b>Overall: ${overall}/${total} topics (${Math.round(overall/total*100)}%)</b>`;
+ const badges=[
+  ["🏆","First Topic Complete",done.size>=1],
+  ["📚","5 Topics Completed",done.size>=5],
+  ["🔥","3-Day Study Streak",streak.days>=3],
+  ["🧪","Chemistry Explorer",completedSubject("Chemistry")>=5],
+  ["⚡","Physics Solver",completedSubject("Physics")>=5],
+  ["📈","Economics Thinker",completedSubject("Economics")>=5],
+  ["🌍","Social Studies Scholar",completedSubject("Social Studies")>=5],
+  ["🧬","Biology Explorer",completedSubject("Biology")>=5],
+ ];
+ document.getElementById("badges").innerHTML=badges.map(b=>`<div class="badge ${b[2]?"":"locked"}">${b[0]} ${b[1]}</div>`).join("");
+ document.getElementById("streakText").textContent=`🔥 Study streak: ${streak.days} day${streak.days===1?"":"s"}`;
+}
+function openSubject(s){
+ state.subject=s; state.section=0; state.topic=0;
+ document.getElementById("sectionList").innerHTML=DATA[s].map((sec,i)=>`<button class="section-btn ${i===0?"active":""}" onclick="openSection(${i})">${sec.no}. ${esc(sec.name)}<br><small>${sec.topics.length} topics</small></button>`).join("");
+ document.getElementById("lesson").classList.add("hidden");document.getElementById("quizMount").innerHTML="";
+ renderTopics(); setCrumb();
+ location.hash="library"; document.getElementById("library").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function setCrumb(topicName=""){
+ const parts=[`<button onclick="openSubject('${esc(state.subject)}')">${icons[state.subject]} ${esc(state.subject)}</button>`,`<span>›</span><b>Section ${DATA[state.subject][state.section].no}</b>`];
+ if(topicName)parts.push(`<span>›</span><b>${esc(topicName)}</b>`);
+ document.getElementById("crumb").innerHTML=parts.join(" ");
+}
+function openSection(i){
+ state.section=i; state.topic=0;
+ document.querySelectorAll(".section-btn").forEach((b,j)=>b.classList.toggle("active",j===i));
+ renderTopics();document.getElementById("lesson").classList.add("hidden");document.getElementById("quizMount").innerHTML="";setCrumb();
+}
+function renderTopics(){
+ const sec=DATA[state.subject][state.section];
+ document.getElementById("topicGrid").innerHTML=sec.topics.map((t,i)=>`<button class="topic-card ${done.has(t.id)?"done":""}" onclick="openTopic(${i})"><strong>${done.has(t.id)?"✓ ":""}${esc(t.name)}</strong><small>${esc(t.intro.slice(0,115))}…</small></button>`).join("");
+}
+function visualFor(topic){
+ const t=topic.toLowerCase();
+ if(t.includes("demand")||t.includes("supply")||t.includes("equilibrium")||t.includes("elasticity")){
+  return `<div class="visual"><svg viewBox="0 0 520 300" role="img" aria-label="Illustrative demand and supply graph"><line x1="65" y1="250" x2="65" y2="35" stroke="#9bb0c6" stroke-width="2"/><line x1="65" y1="250" x2="485" y2="250" stroke="#9bb0c6" stroke-width="2"/><path d="M85 60 Q260 145 455 230" fill="none" stroke="#42dcff" stroke-width="4"/><path d="M85 230 Q260 145 455 60" fill="none" stroke="#8068ff" stroke-width="4"/><circle cx="270" cy="145" r="6" fill="#fff"/><text x="440" y="242" fill="#c7d5e3">Quantity</text><text x="15" y="50" fill="#c7d5e3">Price</text><text x="390" y="90" fill="#42dcff">Demand</text><text x="390" y="115" fill="#8068ff">Supply</text><text x="278" y="137" fill="#fff">E</text></svg><small class="muted">Illustrative graph: always label axes and curves in an examination.</small></div>`;
+ }
+ if(t.includes("logic")||t.includes("truth table")||t.includes("digital")){
+  return `<div class="visual"><svg viewBox="0 0 560 210" role="img" aria-label="Digital logic illustration"><rect x="210" y="60" width="150" height="90" rx="12" fill="#10243a" stroke="#42dcff"/><text x="250" y="112" fill="#fff" font-size="22">LOGIC</text><line x1="60" y1="85" x2="210" y2="85" stroke="#42dcff" stroke-width="5"/><line x1="60" y1="125" x2="210" y2="125" stroke="#42dcff" stroke-width="5"/><line x1="360" y1="105" x2="500" y2="105" stroke="#8068ff" stroke-width="5"/><text x="30" y="80" fill="#c7d5e3">A</text><text x="30" y="120" fill="#c7d5e3">B</text><text x="505" y="110" fill="#c7d5e3">Y</text></svg><small class="muted">Use the gate's truth table to verify each input/output combination.</small></div>`;
+ }
+ if(t.includes("molecular shape")||t.includes("covalent")){
+  return `<div class="visual"><svg viewBox="0 0 520 240" role="img" aria-label="Molecular shape illustration"><circle cx="260" cy="120" r="30" fill="#10243a" stroke="#42dcff" stroke-width="3"/><circle cx="120" cy="55" r="20" fill="#0c192a" stroke="#8068ff" stroke-width="3"/><circle cx="400" cy="55" r="20" fill="#0c192a" stroke="#8068ff" stroke-width="3"/><circle cx="120" cy="185" r="20" fill="#0c192a" stroke="#8068ff" stroke-width="3"/><line x1="240" y1="100" x2="135" y2="65" stroke="#42dcff" stroke-width="5"/><line x1="280" y1="100" x2="385" y2="65" stroke="#42dcff" stroke-width="5"/><line x1="240" y1="140" x2="135" y2="175" stroke="#42dcff" stroke-width="5"/><text x="246" y="127" fill="#fff">C</text><text x="112" y="61" fill="#fff">H</text><text x="392" y="61" fill="#fff">H</text><text x="112" y="191" fill="#fff">H</text></svg><small class="muted">Diagram is illustrative; explain geometry and electron-pair repulsion in words.</small></div>`;
+ }
+ return "";
+}
+function openTopic(i){
+ state.topic=i; const t=DATA[state.subject][state.section].topics[i];
+ const L=document.getElementById("lesson");L.classList.remove("hidden");
+ setCrumb(t.name);
+ const list=(arr)=>`<ul>${arr.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+ const terms=`<div class="badges">${t.terms.map(x=>`<span class="badge">${esc(x)}</span>`).join("")}</div>`;
+ const formula=t.formula?`<div class="callout"><b>KEY FORMULA / RELATIONSHIP</b><div class="formula">${esc(t.formula)}</div></div>`:"";
+ L.innerHTML=`<div class="lesson-head"><div><div class="eyebrow">${icons[state.subject]} ${esc(state.subject)} • Section ${DATA[state.subject][state.section].no}</div><h2>${esc(t.name)}</h2><p class="muted">${esc(t.intro)}</p></div><button class="btn" onclick="backToTopics()">← Back</button></div>
+ <h3>🎯 Learning objectives</h3>${list(t.objectives)}
+ <h3>📖 Detailed explanation</h3>${t.explanation.map(p=>`<p>${esc(p)}</p>`).join("")}${visualFor(t.name)}${formula}
+ <h3>🧠 Key ideas to master</h3>${list(t.keyIdeas)}
+ <h3>🔑 Important terms</h3>${terms}
+ <h3>🧮 Worked example</h3><div class="callout">${esc(t.example)}</div>
+ <h3>🌍 Practical / real-life application</h3><p>${esc(t.application)}</p>
+ <h3>🎯 EXAM FOCUS</h3><div class="callout">${esc(t.exam)}</div>
+ <h3>⚠️ Common mistakes</h3>${list(t.mistakes)}
+ <h3>⚡ Quick recap</h3>${list(t.recap)}
+ <button class="btn primary" onclick="completeTopic()">✓ Mark Topic Complete</button>`;
+ renderQuiz(t);
+ L.scrollIntoView({behavior:"smooth",block:"start"}); markStreak();
+}
+function backToTopics(){document.getElementById("lesson").classList.add("hidden");document.getElementById("quizMount").innerHTML="";setCrumb()}
+function completeTopic(){
+ const t=DATA[state.subject][state.section].topics[state.topic];done.add(t.id);save();markStreak();renderTopics();
+ const b=document.querySelectorAll(".topic-card")[state.topic];if(b)b.classList.add("done");
+}
+function renderQuiz(t){
+ const q=t.quiz;
+ document.getElementById("quizMount").innerHTML=`<div class="quiz"><h3>📝 Quick Check</h3><p class="muted">Choose one answer. Feedback appears immediately and the question locks after your choice.</p><div class="qcard" id="qcard"><b>${esc(q.question)}</b><div class="options">${q.options.map(o=>`<button class="option" onclick="answerTopic(this,'${encodeURIComponent(q.answer)}')">${esc(o)}</button>`).join("")}</div><div class="feedback" id="qfeedback"></div></div><div id="quizScore"></div><button class="btn" onclick="retryTopicQuiz()">↻ Try Again</button></div>`;
+}
+function answerTopic(btn,encoded){
+ const answer=decodeURIComponent(encoded), card=document.getElementById("qcard");if(card.dataset.done)return;card.dataset.done="1";
+ const opts=[...card.querySelectorAll(".option")];opts.forEach(o=>{o.disabled=true;if(o.textContent===answer)o.classList.add("correct")});
+ const ok=btn.textContent===answer;if(!ok)btn.classList.add("wrong");
+ const fb=document.getElementById("qfeedback");fb.className="feedback show "+(ok?"good":"bad");fb.innerHTML=(ok?"✓ Correct! ":"✗ Not quite. ")+`<b>Correct answer: ${esc(answer)}</b><br>${esc(DATA[state.subject][state.section].topics[state.topic].quiz.explanation)}`;
+ const key=DATA[state.subject][state.section].topics[state.topic].id;quizScores[key]=ok?100:0;save();
+ document.getElementById("quizScore").innerHTML=`<div class="score-box"><b>Quick Check score: ${ok?"100%":"0%"}</b><br><span class="muted">Correct: ${ok?1:0} • Wrong: ${ok?0:1}</span></div>`;
+}
+function retryTopicQuiz(){renderQuiz(DATA[state.subject][state.section].topics[state.topic])}
+function searchHub(){
+ const q=document.getElementById("searchInput").value.trim().toLowerCase(), out=document.getElementById("searchResults");if(!q){out.innerHTML="";return}
+ const hits=[];Object.entries(DATA).forEach(([s,secs])=>secs.forEach((sec,si)=>sec.topics.forEach((t,ti)=>{
+   const hay=(s+" "+sec.name+" "+t.name+" "+t.intro+" "+t.explanation.join(" ")).toLowerCase();
+   if(hay.includes(q))hits.push({s,si,ti,t,sec});
+ })));
+ out.innerHTML=hits.length?hits.slice(0,40).map(h=>`<button class="result" onclick="openSubject('${esc(h.s)}');setTimeout(()=>{openSection(${h.si});setTimeout(()=>openTopic(${h.ti}),30)},30)"><small>${icons[h.s]} ${esc(h.s)} • ${esc(h.sec.name)}</small><br><b>${esc(h.t.name)}</b><br><span class="muted">${esc(h.t.intro.slice(0,140))}…</span></button>`).join(""):`<div class="result">No matching lesson found. Try a broader phrase such as <b>equilibrium</b>, <b>supply</b>, <b>cells</b>, <b>heat</b> or <b>identity</b>.</div>`;
+}
+document.getElementById("searchBtn").onclick=searchHub;document.getElementById("searchInput").addEventListener("input",searchHub);
+document.getElementById("menuBtn").onclick=()=>document.getElementById("nav").classList.toggle("open");
+function initMock(){
+ const sel=document.getElementById("mockSubject");sel.innerHTML=Object.keys(DATA).map(s=>`<option>${esc(s)}</option>`).join("");sel.onchange=renderMock;renderMock();
+}
+function renderMock(){
+ const s=document.getElementById("mockSubject").value, m=MOCKS[s];
+ document.getElementById("mockMount").innerHTML=`<div class="test-head"><h3>${icons[s]} ${esc(s)} Mock Examination</h3><span class="muted">40 objectives + 6 theory</span></div><p class="muted">Objective answers give immediate feedback. Theory questions are structured for written practice.</p><div class="test-grid">${m.objectives.map((q,i)=>`<div class="qcard mockq" data-answer="${encodeURIComponent(q.answer)}"><b>${i+1}. ${esc(q.question)}</b><div class="options">${q.options.map(o=>`<button class="option" onclick="answerMock(this,${i})">${esc(o)}</button>`).join("")}</div><div class="feedback" id="mf-${i}"></div></div>`).join("")}</div><div class="score-box" id="mockScore">Score: not submitted yet.</div><h3>📚 Theory questions</h3>${m.theory.map((q,i)=>`<div class="theory"><b>${i+1}. ${esc(q.question)}</b><ul>${q.parts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul><small class="muted">Topic focus: ${esc(q.topic)}</small></div>`).join("")}`;
+}
+let mockAnswered=0,mockCorrect=0;
+function answerMock(btn,i){
+ const cards=document.querySelectorAll(".mockq");const card=cards[i];if(card.dataset.done)return;card.dataset.done="1";mockAnswered++;
+ const ans=decodeURIComponent(card.dataset.answer),ok=btn.textContent===ans; if(ok)mockCorrect++;
+ card.querySelectorAll(".option").forEach(o=>{o.disabled=true;if(o.textContent===ans)o.classList.add("correct")});if(!ok)btn.classList.add("wrong");
+ const fb=card.querySelector(".feedback");fb.className="feedback show "+(ok?"good":"bad");fb.innerHTML=(ok?"✓ Correct! ":"✗ Incorrect. ")+`Correct answer: <b>${esc(ans)}</b>`;
+ document.getElementById("mockScore").innerHTML=`Score: ${mockCorrect}/${mockAnswered} answered • ${mockAnswered?Math.round(mockCorrect/mockAnswered*100):0}% so far. Finish all 40 objectives to complete the objective section.`;
+}
+renderSubjects();renderProgress();initMock();
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body></html>

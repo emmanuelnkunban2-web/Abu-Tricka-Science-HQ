@@ -1,0 +1,10 @@
+{
+  "name": "The Abu Tricka Science Hub",
+  "short_name": "Abu Tricka Hub",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050b14",
+  "theme_color": "#07111f",
+  "description": "Year 2 learning platform for SHS students.",
+  "icons": []
+}

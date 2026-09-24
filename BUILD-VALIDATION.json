@@ -1,0 +1,13 @@
+{
+  "subjects": {
+    "Biology": 8,
+    "Chemistry": 24,
+    "Physics": 25,
+    "Economics": 30,
+    "Social Studies": 36
+  },
+  "total_topics": 123,
+  "all_topics_have_lessons": true,
+  "all_topics_have_quizzes": true,
+  "year3_active": false
+}
